@@ -1,0 +1,5 @@
+# Requirements for Self-Evolving CPU Emulator
+# Core (no dependencies — pure Python!)
+# Optional for enhanced terminal output:
+rich>=13.0.0
+pytest>=7.0.0
