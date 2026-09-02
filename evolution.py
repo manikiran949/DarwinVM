@@ -232,6 +232,7 @@ class EvolutionEngine:
         # Step 1: Profile execution
         if self.verbose:
             print(f"  │  Profiling execution...")
+            time.sleep(1.5)
         profiler = Profiler(window_size=self.profiler_window)
         profile_cpu = CPU()
         # Re-register any previously evolved instructions so the CPU can run
@@ -255,6 +256,7 @@ class EvolutionEngine:
 
         if self.verbose:
             print(f"  │  Found {len(hot_patterns)} hot patterns")
+            time.sleep(1.5)
 
         if not hot_patterns:
             if self.verbose:
@@ -278,6 +280,7 @@ class EvolutionEngine:
             print(f"  │  Selected {len(candidates)} candidates for synthesis:")
             for c in candidates:
                 print(f"  │    {c.fused_name} (freq={c.frequency:,}, score={c.score:,})")
+            time.sleep(2.0)
 
         if not candidates:
             if self.verbose:
@@ -298,6 +301,7 @@ class EvolutionEngine:
 
         if self.verbose:
             print(f"  │  Synthesized {len(synthesized)} new instructions")
+            time.sleep(1.5)
 
         # Step 5: Rewrite the program
         gen_report.program_size_before = len(current_program)
@@ -312,10 +316,12 @@ class EvolutionEngine:
             print(f"  │  Program: {gen_report.program_size_before} → "
                   f"{gen_report.program_size_after} instructions "
                   f"(-{reduction})")
+            time.sleep(2.0)
 
         # Step 6: Benchmark
         if self.verbose:
             print(f"  │  Benchmarking...")
+            time.sleep(3.0)
 
         baseline_cpu = CPU()
         benchmarker = Benchmarker(
@@ -378,6 +384,7 @@ class EvolutionEngine:
         if self.verbose:
             print(f"  └─ Generation {generation} complete")
             print()
+            time.sleep(2.0)
 
         return gen_report
 

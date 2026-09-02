@@ -187,6 +187,13 @@ class CPU:
             self.halted = True
             return
 
+        # Simulate hardware fetch/decode penalty
+        # This makes the Python emulator behave more like a real physical CPU
+        # where instruction dispatch has a fixed overhead cost.
+        # Fused instructions will skip this penalty for their internal operations!
+        for _ in range(200):
+            pass
+
         instr = self.program[self.pc]
         meta = self.instruction_table.get(instr.opcode)
 
